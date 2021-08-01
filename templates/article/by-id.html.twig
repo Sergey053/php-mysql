@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{article.title}}{% endblock %}
+
+{% block body %}
+<div>
+
+<h1>{{article.type}}</h1>
+<h1>{{article.title|upper}}</h1>
+<div><img src="/covers_directory/{{ article.cover }}" height="350" width="300"></div>
+<p> {{article.description)}}
+</p>
+<p>Опубликована {{article.published|date("m.d.Y")}}
+   пользователем <strong>{{article.user.login}}</strong>
+</p>
+ <div>
+            <div id="comments">
+            {% if article.comments.empty %}
+                <p>К данной статье нет комментариев.</p>
+            {% else %}
+                {% for comment in article.comments.toArray %}
+                        <div>
+                            <p>{{ comment.user.login }} | {{ comment.added|date("m.d.Y H:i:s") }}</p>
+                            <p>{{ comment.text }}</p>
+                        </div>
+                {% endfor %}
+            {% endif %}
+    </div>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <form name="add-comment">
+                    <textarea name="text" placeholder="Оставить комментарий"></textarea>
+                    <input type="hidden" name="article_id" value="{{ article.id }}">
+                    <div>
+                        <input type="submit" value="Добавить комментарий">
+                    </div>
+                </form>
+            {% else %}
+                <p>Авторизуйтесь, чтобы оставлять комментарии.</p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footerjs %}
+    {{ encore_entry_script_tags('review') }}
+    {{ encore_entry_script_tags('to-list') }}
+{% endblock %}

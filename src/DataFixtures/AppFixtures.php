@@ -20,9 +20,9 @@ class AppFixtures extends Fixture
     }
 
     private $usersData = [
-        ['login' => 'qwe', 'pwd' => '123'],
-        ['login' => 'asd', 'pwd' => '111'],
-        ['login' => 'zxc', 'pwd' => '555555']
+        ['login' => 'qwe', 'pwd' => '123', 'role' => 'ROLE_USER'],
+        ['login' => 'asd', 'pwd' => '111', 'role' => 'ROLE_USER'],
+        ['login' => 'zxc', 'pwd' => '555555', 'role' => 'ROLE_ADMIN']
     ];
 
     private $types = [
@@ -56,57 +56,30 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setLogin($data['login']);
             $user->setHash($this->passwordHasher->hashPassword($user, $data['pwd']));
+            $user->setRoles([$data['role']]);
             $manager->persist($user);
             $users[] = $user;
         }
         return $users;
     }
 
-    // private function generateTypes(ObjectManager &$manager)
-    // {
-    //     $types = [];
-    //     foreach ($this->types as $type) {
-    //         $t = new Article();
-    //         // $t->setName($type['name']);
-    //         $t->setType($type['type']);
-    //         $manager->persist($t);
-    //         $types[] = $t;
-    //     }
-    //     return $types;
-    // }
+    
 
     private function generateArticles(ObjectManager &$manager)
     {
-        // $types = $this->generateTypes($manager);
-        // $typesCount = count($types) - 1;
-        // $typesCount = count($this->types) - 1;
+        $typesCount = count($this->types) - 1;
         $users = $this->generateUsers($manager);
         $usersCount = count($users) - 1;
         $titlesCount = count($this->titles) - 1;
-        // for ($i = 0; $i < 30; $i++) {
-        //     $article = new Article();
-        //     $article->setTitle($this->titles[rand(0, $titlesCount)]);
-        //     $article->setPublished(new \DateTime($this->dates[rand(0, 2)]));
-        //     $article->setType($types[rand(0, $typesCount)]);
-        //     $article->setUser($users[rand(0, $usersCount)]);
-        //     $manager->persist($article);
-        // }
-        $t = new Article();
-            $t->setTitle('Новости в Санкт-Петербурге');
-            $t->setDescription('Что происходит вгороде');
-            $t->setType('Новости');
-            $t->setUser($users[rand(0, $usersCount)]);
-            $t->setPublished(new \DateTime($this->dates[rand(0, 2)]));
-            $manager->persist($t);
-        $t = new Article(); 
-            $t->setTitle('Олимпиада');
-            $t->setDescription('Статистика по завоеванным медалям');
-            $t->setType('Спорт');
-            $t->setUser($users[rand(0, $usersCount)]);
-            $t->setPublished(new \DateTime($this->dates[rand(0, 2)]));
-            $manager->persist($t);
-
-
+         for ($i = 0; $i < 30; $i++) {
+             $article = new Article();
+             $article->setTitle($this->titles[rand(0, $titlesCount)]);
+             $article->setPublished(new \DateTime($this->dates[rand(0, 2)]));
+             $article->setType($this->types[rand(0, $typesCount)]['type']);
+             $article->setDescription('описание');
+             $article->setUser($users[rand(0, $usersCount)]);
+             $manager->persist($article);
+         }
     }
 
     public function load(ObjectManager $manager)

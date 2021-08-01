@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ type }}{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>{{ type|upper }}</h1>
+
+        {% for article in articles %}
+            <h2> {{ article.title}} </h2>
+            <div><img src="/covers_directory/{{ article.cover }}" height="230" width="200"></div>
+            <a href="/articles/{{ article.id }}">Перейти  к статье</a>
+            {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <button type="button" class="add-to-list" data-id="{{ book.id }}">Добавить в список</button>
+            {% endif %} #}
+        {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footerjs %}
+    {{ encore_entry_script_tags('to-list') }}
+{% endblock %}

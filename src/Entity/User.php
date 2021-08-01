@@ -38,10 +38,10 @@ class User implements UserInterface
      */
     private $articles;
 
-    // /**
-    //  * @ORM\Column(type="json")
-    //  */
-    // private $roles = [];
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     public function __construct()
     {

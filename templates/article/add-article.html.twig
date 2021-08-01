@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Добавление статьи{% endblock %}
+
+{% block body %}
+<div>
+    {# {% if (error is defined ) %}
+        <p>{{ error }}</p>
+    {% endif %} #}
+    <form id="add-art" method="post" action="/addArticle">
+         <input type="text" name="title" placeholder="Введите название статьи">
+         <input type="text" name="type"      
+         placeholder="Введите тип статьи">
+          <input type="text" name="description"      
+         placeholder="Введите содержание">
+         <div>
+         <form id="file" enctype="multipart/form-data" method="post">
+         <p><input type="file" name="investment">
+         <input type="submit" value="Отправить"></p>
+         </form> 
+         </div>
+        <input type="submit" value="Добавить статью">
+    </form>
+</div>
+{% endblock %}

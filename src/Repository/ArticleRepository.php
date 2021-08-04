@@ -35,6 +35,18 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findLastByArticle(){
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 5";
+        $statement = $connection->executeQuery($sql);
+        $resultArr = $statement->fetchAllAssociative();
+        dump($resultArr);
+        return $resultArr;
+    }
+
+
+
 public function findAllByType(string $articleType){
     return $this->createQueryBuilder('b')
     ->andWhere('b.type = :type')

@@ -3,16 +3,219 @@
 {% block title %}{{article.title}}{% endblock %}
 
 {% block body %}
+ <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="blog-posts-area">
+
+                        <!-- Single Featured Post -->
+                        <div class="single-blog-post-details">
+                            <div class="post-thumb">
+                                <img src="/investments_directory/{{ article.investment }}" height="450" width="400">>
+                            </div>
+                            <div class="post-data">
+                                <a href="#" class="post-catagory">{{article.type}}</a>
+                                <h2 class="post-title">{{article.title}}</h2>
+                                <div class="post-meta">
+
+                                    <!-- Post Details Meta Data -->
+                                    <div class="post-details-meta-data mb-50 d-flex align-items-center justify-content-between">
+                                        <!-- Post Author & Date -->
+                                        <div class="post-authors-date">
+                                            <p class="post-author">By <a href="#"><strong>{{article.user.login}}</strong></a></p>
+                                            <p class="post-date">{{article.published|date("d.m.Y")}}</p>
+                                        </div>
+                                        <!-- View Comments -->
+                                        <div class="view-comments">
+                                            <p class="views">1281 Views</p>
+                                            <a href="#" class="comments">3 comments</a>
+                                        </div>
+                                    </div>
+
+                                    <p>{{article.description}}</p>
+
+                                   
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                       
+
+                        <!-- Comment Area Start -->
+                        <div class="comment_area clearfix" id="comments">
+                            <h4 class="title mb-70">1 comment</h4>
+
+                            <ol>
+                                <!-- Single Comment Area -->
+                                <li class="single_comment_area">
+                                    <!-- Comment Content -->
+                                    <div class="comment-content d-flex">
+                                        <!-- Comment Author -->
+                                        <div class="comment-author">
+                                            <img src="img/bg-img/t1.jpg" alt="author">
+                                        </div>
+                                        <!-- Comment Meta -->
+                                        <div class="comment-meta">
+                                            <a href="#" class="post-author">Christian Williams</a>
+                                            <a href="#" class="post-date">April 15, 2018</a>
+                                            <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
+                                        </div>
+                                    </div>
+                                    <ol class="children">
+                                        <li class="single_comment_area">
+                                            <!-- Comment Content -->
+                                            <div class="comment-content d-flex">
+                                                <!-- Comment Author -->
+                                                <div class="comment-author">
+                                                    <img src="img/bg-img/t2.jpg" alt="author">
+                                                </div>
+                                                <!-- Comment Meta -->
+                                                <div class="comment-meta">
+                                                    <a href="#" class="post-author">Sandy Doe</a>
+                                                    <a href="#" class="post-date">April 15, 2018</a>
+                                                    <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+
+                                <!-- Single Comment Area -->
+                                <li class="single_comment_area">
+                                    <!-- Comment Content -->
+                                    <div class="comment-content d-flex">
+                                        <!-- Comment Author -->
+                                        <div class="comment-author">
+                                            <img src="img/bg-img/t3.jpg" alt="author">
+                                        </div>
+                                        <!-- Comment Meta -->
+                                        <div class="comment-meta">
+                                            <a href="#" class="post-author">Christian Williams</a>
+                                            <a href="#" class="post-date">April 15, 2018</a>
+                                            <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="post-a-comment-area">
+                            <h4 class="mb-70">Оставить комментарий</h4>
+                            <!-- Reply Form -->
+                            <div class="contact-form-area">
+                                <form action="#" method="post">
+                                    <div class="row ">
+                                        {# <div class="col-12 col-lg-6">
+                                            <input type="text" class="form-control" id="name" placeholder="Name*">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <input type="email" class="form-control" id="email" placeholder="Email*">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" id="subject" placeholder="Website">
+                                        </div> #}
+                                        <div class="col-12 ">
+                                            <textarea name="text" placeholder="Введите текст" class="form-control" id="message" cols="30" rows="10" ></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn viral-btn mt-30" type="submit">Отправить</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="blog-sidebar-area">
+
+                        
+
+                        <!-- Trending Articles Widget -->
+                        <div class="treading-articles-widget mb-70">
+                            <h4>Популярные статьи</h4>
+
+                            <!-- Single Trending Articles -->
+                            <div class="single-blog-post style-4">
+                                <!-- Post Thumb -->
+                                {% for article in articles %}
+            
+                                <div class="post-thumb">
+                                    <a href="#"><img src="/investments_directory/{{ article.investment }}" height="230" width="200"></a>
+                                    <span class="serial-number">{{ article.id }}</span>
+                                </div>
+                                <!-- Post Data -->
+                                <div class="post-data">
+                                    <a href="#" class="post-title">
+                                        <h6>{{ article.title }}</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-author">By <a href="#">{{ article.user.login }}</a></p>
+                                    </div>
+                                </div>
+                                 {% endfor %}
+                            </div>
+                           
+
+                           
+
+                            
+
+                        </div>
+
+                        
+
+                        <!-- Latest Comments -->
+                        <div class="latest-comments-widget">
+                            <h4>Последние комментарии</h4>
+                                {% if article.comments.empty %}
+                                     <div class="comments-text">
+                                     <p>К данной статье нет комментариев.</p>
+                                      </div>
+                                 {% else %}
+                                {% for comment in article.comments.toArray %}
+                                <!-- Single Comment Widget -->
+                                    <div class="single-comments d-flex">
+                                <div class="comments-thumbnail">
+                                    <img src="img/bg-img/t1.jpg" alt="">
+                                </div>
+                                <div class="comments-text">
+                                    <a href="#"><span>{{ comment.user.login }}</span>{{ comment.text }}</a>
+                                    <p>загружен: {{ comment.added|date("m.d.Y H:i:s") }}</p>
+                                </div>
+                            </div>
+
+                           
+
+                            <!-- Single Comment Widget -->
+                            {# <div class="single-comments d-flex">
+                                <div class="comments-thumbnail">
+                                    <img src="img/bg-img/t3.jpg" alt="">
+                                </div>
+                                <div class="comments-text">
+                                    <a href="#"><span>Sandy Doe</span> on Facebook is offering facial recognition...</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
+                                </div>
+                            </div> #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div>
 
-<h1>{{article.type}}</h1>
+{# <h1>{{article.type}}</h1>
 <h1>{{article.title|upper}}</h1>
-<div><img src="/covers_directory/{{ article.cover }}" height="350" width="300"></div>
-<p> {{article.description)}}
+<div><img src="/covers_directory/{{ article.investment }}" height="350" width="300"></div>
+<p> {{article.description}}
 </p>
 <p>Опубликована {{article.published|date("m.d.Y")}}
    пользователем <strong>{{article.user.login}}</strong>
-</p>
+</p> #}
  <div>
             <div id="comments">
             {% if article.comments.empty %}
@@ -26,7 +229,7 @@
                 {% endfor %}
             {% endif %}
     </div>
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} #}
                 <form name="add-comment">
                     <textarea name="text" placeholder="Оставить комментарий"></textarea>
                     <input type="hidden" name="article_id" value="{{ article.id }}">
@@ -34,15 +237,15 @@
                         <input type="submit" value="Добавить комментарий">
                     </div>
                 </form>
-            {% else %}
+            {# {% else %}
                 <p>Авторизуйтесь, чтобы оставлять комментарии.</p>
-            {% endif %}
+            {% endif %} #}
 
         </div>
     </div>
 {% endblock %}
 
-{% block footerjs %}
-    {{ encore_entry_script_tags('review') }}
-    {{ encore_entry_script_tags('to-list') }}
-{% endblock %}
+{# {% block footerjs %}
+    {# {{ encore_entry_script_tags('review') }}
+    {{ encore_entry_script_tags('to-list') }} #}
+{# {% endblock %} #} 

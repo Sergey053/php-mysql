@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,7 +34,15 @@ class ArticleController extends AbstractController
         'type' => $article[0]->getType()->getName()
     ]);
 }
-#[Route('/articles', name: 'add_article', methods: ['POST'])]
+    #[Route('/articles', name: 'add-article-form', methods: ['GET'])]
+public function addArticleForm(): Response
+{
+    // if ($this->getUser()) {
+    //     return $this->redirectToRoute('article');
+    // }
+    return $this->render('article/add-article.html.twig');
+}
+    #[Route('/articles', name: 'add_article', methods: ['POST'])]
     public function addArticle(Request $request, FileUploader $fileUploader): Response
     {
 
@@ -44,26 +55,26 @@ class ArticleController extends AbstractController
         $articleData = $request->request;
         $newArticle->setTitle($articleData->get('title'));
         $newArticle->setType($articleData->get('type'));
-        $newArticle->setDescription($articleData->get('Description'));
-        $newArticle->setInvestment($articleData->get('investment'));
+        $newArticle->setDescription($articleData->get('description'));
+        $newArticle->setPublished(new \DateTime());
         $entityManager = $this->getDoctrine()->getManager();
-        $type = $entityManager->getRepository(Article::class)->find($articleData->get('type_id'));
-        return $this->render('article/add-article.html.twig', [
-            'article' => $article,
-        ]);
+        // $type = $entityManager->getRepository(Article::class)->find($articleData->get('type_id'));
+        
         
 
-        // получение авторизованного пользователя из контроллера:
-        $user = $this->getUser();
+        // // получение авторизованного пользователя из контроллера:
+        // $user = $this->getUser();
+        $user = $entityManager->getRepository(User::class)->find(1);
+    
 
-        $newArticle->setType($type);
+       
         $newArticle->setUser($user);
 
         $entityManager->persist($newArticle);
         $entityManager->flush();
 
-        return $this->json(['article_id' => $newArticle->getId(), 'article_title' => $newArticle->getTitle()]);
-        
+        return $this->render('article/add-article.html.twig'
+        );
     }
 
 }

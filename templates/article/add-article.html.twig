@@ -3,23 +3,55 @@
 {% block title %}Добавление статьи{% endblock %}
 
 {% block body %}
+<div class="contact-area section-padding-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <!-- Contact Title -->
+                    <div class="contact-title">
+                        <h4>Ввод данных</h4>
+                    </div>
+
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area mb-70">
+                        <form action="/articles" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <input type="text" class="form-control" name="title" id="name" placeholder="Название">
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="text" name="type" class="form-control" id="type_add" placeholder="Тип статьи">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <textarea name="description" class="form-control" id="message" cols="30" rows="10" placeholder="Описание"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input type="file" name="investment" class="form-control" id="subject" placeholder="Изображение">
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn viral-btn mt-30" type="submit">Загрузить статью</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 <div>
     {# {% if (error is defined ) %}
         <p>{{ error }}</p>
     {% endif %} #}
-    <form id="add-art" method="post" action="/addArticle">
+
+    {# <form id="add-art" method="post" action="/articles" enctype="multipart/form-data">
          <input type="text" name="title" placeholder="Введите название статьи">
          <input type="text" name="type"      
          placeholder="Введите тип статьи">
           <input type="text" name="description"      
          placeholder="Введите содержание">
          <div>
-         <form id="file" enctype="multipart/form-data" method="post">
          <p><input type="file" name="investment">
-         <input type="submit" value="Отправить"></p>
-         </form> 
+        
+         </p>
          </div>
         <input type="submit" value="Добавить статью">
-    </form>
+    </form> #}
 </div>
 {% endblock %}

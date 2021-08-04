@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+{# {% block stylesheets %} #}
+    {# {{ encore_entry_link_tags('to-list') }} #}
+{# {% endblock %} #}
+{% block body %}
+    <div>
+        {# {% for type_name, books_arr in books %}
+            {% set genre_arr = genre_name|split('|') %}
+            <h2>
+                Книги из жанра
+                <a href="/books/{{ genre_arr[1] }}">
+                    {{ genre_arr[0]|upper }}
+                </a>
+            </h2> #}
+             {# <div><a class="article-link" href="/articles">Добавить статью</a></div> #}
+                
+            {% for article in articles %}
+                <h3>{{ article.title }}</h3>
+                <h3>{{ article.type }}</h3>
+                <div><img src="/investments_directory/{{ article.investment }}" height="230" width="200"></div>
+                <a class="article-link" href="/articles/{{ article.id }}">Перейти  к статье</a>
+                {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} #}
+                <button type="button" class="add-to-list" data-id="{{ article.id }}">Добавить комментарий</button>
+                {# {% endif %} #}
+            {% endfor %}
+        {# {% endfor %} #}
+    </div>
+{% endblock %}
+
+{# {% block footerjs %}
+    {# {{ encore_entry_script_tags('to-list') }} #}
+{# {% endblock %} #} 

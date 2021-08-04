@@ -10,12 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class StartController extends AbstractController
 {
     #[Route('/start', name: 'start')]
-    public function index(): Response
+    public function Carusel(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $articles = $entityManager->getRepository(Article::class)->findLastByArticle();
+        $threeArticles = $entityManager->getRepository(Article::class)->findLastByThreeArticle();
         return $this->render('start/index.html.twig', [
-            'articles' => $articles,
+            'threeArticles' => $threeArticles,
         ]);
     }
 }

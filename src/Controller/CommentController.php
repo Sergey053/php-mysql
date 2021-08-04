@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
-// use App\Entity\User;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentController extends AbstractController
 {
-    #[Route('/comment', name: 'comment')]
-    public function index(): Response
+    #[Route('/comment', name: 'comment', methods: ['POST'])]
+    public function addComment(Request $request, FileUploader $fileUploader): Response
+    
     {
         $commentData = $request->request;
 
@@ -24,7 +27,7 @@ class CommentController extends AbstractController
 
         // получение авторизованного пользователя из контроллера:
         // $user = $this->getUser();
-        $entityManager->getRepository(User::class)->find(1);
+        $user = $entityManager->getRepository(User::class)->find(1);
 
         $comment->setUser($user);
         $comment->setArticle($article);

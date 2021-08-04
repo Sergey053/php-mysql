@@ -18,8 +18,10 @@ class ArticleController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $articleRepository = $entityManager->getRepository(Article::class);
         $article = $articleRepository->find($id);
+        $articles = $entityManager->getRepository(Article::class)->findLastByThreeArticle();
         return $this->render('article/by-id.html.twig', [
             'article' => $article,
+            'articles' => $articles
         ]);
     }
 

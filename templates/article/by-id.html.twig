@@ -12,7 +12,7 @@
                         <!-- Single Featured Post -->
                         <div class="single-blog-post-details">
                             <div class="post-thumb">
-                                <img src="/investments_directory/{{ article.investment }}" height="450" width="400">>
+                                <img src="/investments_directory/{{ article.investment }}" >>
                             </div>
                             <div class="post-data">
                                 <a href="#" class="post-catagory">{{article.type}}</a>
@@ -24,7 +24,7 @@
                                         <!-- Post Author & Date -->
                                         <div class="post-authors-date">
                                             <p class="post-author">By <a href="#"><strong>{{article.user.login}}</strong></a></p>
-                                            <p class="post-date">{{article.published|date("d.m.Y")}}</p>
+                                            <p class="post-date">{{article.published|date("d.m.Y H:i:s")}}</p>
                                         </div>
                                         <!-- View Comments -->
                                         <div class="view-comments">
@@ -105,17 +105,17 @@
                             <h4 class="mb-70">Оставить комментарий</h4>
                             <!-- Reply Form -->
                             <div class="contact-form-area">
-                                <form action="#" method="post">
+                                <form action="/comment" method="post">
                                     <div class="row ">
-                                        {# <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control" id="name" placeholder="Name*">
+                                         <div class="col-12 col-lg-6">
+                                            <input type="hidden" class="form-control" name="article_id" value="{{article.id}}">
                                         </div>
-                                        <div class="col-12 col-lg-6">
+                                        {# <div class="col-12 col-lg-6">
                                             <input type="email" class="form-control" id="email" placeholder="Email*">
                                         </div>
                                         <div class="col-12">
                                             <input type="text" class="form-control" id="subject" placeholder="Website">
-                                        </div> #}
+                                        </div>  #}
                                         <div class="col-12 ">
                                             <textarea name="text" placeholder="Введите текст" class="form-control" id="message" cols="30" rows="10" ></textarea>
                                         </div>
@@ -136,7 +136,7 @@
 
                         <!-- Trending Articles Widget -->
                         <div class="treading-articles-widget mb-70">
-                            <h4>Популярные статьи</h4>
+                            <h4>Последние статьи</h4>
 
                             <!-- Single Trending Articles -->
                             <div class="single-blog-post style-4">
@@ -144,16 +144,16 @@
                                 {% for article in articles %}
             
                                 <div class="post-thumb">
-                                    <a href="#"><img src="/investments_directory/{{ article.investment }}" height="230" width="200"></a>
+                                    <a href="#"><img src="/investments_directory/{{ article.investment }}" ></a>
                                     <span class="serial-number">{{ article.id }}</span>
                                 </div>
                                 <!-- Post Data -->
                                 <div class="post-data">
-                                    <a href="#" class="post-title">
+                                    <a href="/articles/{{ article.id }}" class="post-title">
                                         <h6>{{ article.title }}</h6>
                                     </a>
                                     <div class="post-meta">
-                                        <p class="post-author">By <a href="#">{{ article.user.login }}</a></p>
+                                        {# <p class="post-author">By <a href="#">{{ article.user.login }}</a></p> #}
                                     </div>
                                 </div>
                                  {% endfor %}
@@ -186,6 +186,8 @@
                                     <a href="#"><span>{{ comment.user.login }}</span>{{ comment.text }}</a>
                                     <p>загружен: {{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
+                                {% endfor %}
+                                {% endif %}
                             </div>
 
                            

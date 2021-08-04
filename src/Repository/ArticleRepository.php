@@ -45,6 +45,15 @@ class ArticleRepository extends ServiceEntityRepository
         return $resultArr;
     }
 
+    public function findLastByThreeArticle(){
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 3";
+        $statement = $connection->executeQuery($sql);
+        $threeArticletArr = $statement->fetchAllAssociative();
+        dump($threeArticletArr);
+        return $threeArticletArr;
+    }
+
 
 
 public function findAllByType(string $articleType){

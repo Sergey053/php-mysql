@@ -17,11 +17,13 @@ class StartController extends AbstractController
     public function Carusel(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $threeArticles = $entityManager->getRepository(Article::class)->findLastByThreeArticle();
+        $threeArticles = $entityManager->getRepository(Article::class)->findLastByArticle();
         $oneArticles = $entityManager->getRepository(Article::class)->findLastByOneArticle();
         $twoArticles = $entityManager->getRepository(Article::class)->findLastByTwoArticle();
         $freeArticles = $entityManager->getRepository(Article::class)->findLastByFreeArticle();
         $oneComments = $entityManager->getRepository(Comment::class)->findLastByoneComment();
+        $twoComments = $entityManager->getRepository(Comment::class)->findLastByTwoComment();
+        $threeComments = $entityManager->getRepository(Comment::class)->findLastByThreeComment();
         
         return $this->render('start/index.html.twig', [
             'threeArticles' => $threeArticles,
@@ -29,6 +31,8 @@ class StartController extends AbstractController
             'twoArticles' => $twoArticles,
             'freeArticles' => $freeArticles,
             'oneComments' => $oneComments,
+            'twoComments' => $twoComments,
+            'threeComments' => $threeComments,
         ]);
     }
 }

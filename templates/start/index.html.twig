@@ -78,10 +78,13 @@
         </div>
      </div>
     <div class="viral-story-blog-post section-padding-0-50">
+     
         <div class="container">
+        
             <div class="row">
+           
                 <!-- Blog Posts Area -->
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-lg-8 section-padding-50">
                     <div class="row">
                         {% for article in threeArticles %}      
                         <!-- Single Blog Post -->
@@ -124,7 +127,7 @@
                         </div> -->
 
                         <!-- Latest Comments -->
-                        <div class="latest-comments-widget">
+                        <div class="latest-comments-widget section-padding-50">
                             <h4>Последние комментарии</h4>
 
                             <!-- Single Comment Widget -->
@@ -134,7 +137,7 @@
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span>{{ comment.user.login }}</span>{{ comment.text }}</a>
+                                    <a href="#"><span></span>{{ comment.text }}</a>
                                     <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
                                  {% endfor %}
@@ -142,24 +145,28 @@
 
                             <!-- Single Comment Widget -->
                             <div class="single-comments d-flex">
+                                {% for comment in twoComments %}
                                 <div class="comments-thumbnail">
-                                    <img src="img/bg-img/t2.jpg" alt="">
+                                    <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span>Tania Heffner</span> on Facebook is offering facial recognition...</a>
-                                    <p>06:34 am, April 14, 2018</p>
+                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
+                                 {% endfor %}
                             </div>
 
                             <!-- Single Comment Widget -->
                             <div class="single-comments d-flex">
+                                {% for comment in threeComments %}
                                 <div class="comments-thumbnail">
-                                    <img src="img/bg-img/t3.jpg" alt="">
+                                    <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span>Sandy Doe</span> on Facebook is offering facial recognition...</a>
-                                    <p>06:34 am, April 14, 2018</p>
+                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
+                                 {% endfor %}
                             </div>
                         </div>
 

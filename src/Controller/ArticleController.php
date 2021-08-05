@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Article;
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\FileUploader;
@@ -19,9 +20,17 @@ class ArticleController extends AbstractController
         $articleRepository = $entityManager->getRepository(Article::class);
         $article = $articleRepository->find($id);
         $articles = $entityManager->getRepository(Article::class)->findLastByThreeArticle();
+        $oneComments = $entityManager->getRepository(Comment::class)->findLastByoneComment();
+        $twoComments = $entityManager->getRepository(Comment::class)->findLastByTwoComment();
+        $threeComments = $entityManager->getRepository(Comment::class)->findLastByThreeComment();
+
+
         return $this->render('article/by-id.html.twig', [
             'article' => $article,
-            'articles' => $articles
+            'articles' => $articles,
+            'oneComments' => $oneComments,
+            'twoComments' => $twoComments,
+            'threeComments' => $threeComments,
         ]);
     }
 

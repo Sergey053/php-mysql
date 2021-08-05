@@ -49,7 +49,7 @@
 
                             <ol>
                                 <!-- Single Comment Area -->
-                                <li class="single_comment_area">
+                                {# <li class="single_comment_area">
                                     <!-- Comment Content -->
                                     <div class="comment-content d-flex">
                                         <!-- Comment Author -->
@@ -81,7 +81,7 @@
                                             </div>
                                         </li>
                                     </ol>
-                                </li>
+                                </li> #}
 
                                 <!-- Single Comment Area -->
                                 <li class="single_comment_area">
@@ -92,12 +92,12 @@
                                       </div>
                                      {% else %}
                                       {% for comment in article.comments %}
-                                    <div class="comment-content d-flex">
+                                    <div class="comment-content ">
                                     
                                         <!-- Comment Author -->
-                                        <div class="comment-author">
+                                        {# <div class="comment-author">
                                             <img src="img/bg-img/t3.jpg" alt="author">
-                                        </div>
+                                        </div> #}
                                         <!-- Comment Meta -->
                                         <div class="comment-meta">
                                             <a href="#" class="post-author">{{ comment.user.login }}</a>
@@ -105,7 +105,7 @@
                                             <p>{{ comment.text }}.</p>
                                         </div>
                                         {% endfor %}
-                                {% endif %}
+                                        {% endif %}
                                     </div>
                                 </li>
                             </ol>
@@ -154,7 +154,7 @@
                                 {% for article in articles %}
             
                                 <div class="post-thumb">
-                                    <a href="#"><img src="/investments_directory/{{ article.investment }}" ></a>
+                                    <a href="#"><img src="/investments_directory/{{ article.investment }}"  height="300" width="350"></a>
                                     <span class="serial-number">{{ article.id }}</span>
                                 </div>
                                 <!-- Post Data -->
@@ -181,24 +181,44 @@
                         <!-- Latest Comments -->
                         <div class="latest-comments-widget">
                             <h4>Последние комментарии</h4>
-                                {% if article.comments.empty %}
-                                     <div class="comments-text">
-                                     <p> нет комментариев.</p>
-                                      </div>
-                                 {% else %}
-                                {% for comment in article.comments %}
-                                <!-- Single Comment Widget -->
-                                    <div class="single-comments d-flex">
+                             <div class="single-comments d-flex">
+                             {% for comment in oneComments %}
                                 <div class="comments-thumbnail">
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span>{{ comment.user.login }}</span>{{ comment.text }}</a>
-                                    <p>загружен: {{ comment.added|date("m.d.Y H:i:s") }}</p>
+                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
-                                {% endfor %}
-                                {% endif %}
+                                 {% endfor %}
                             </div>
+
+                            <!-- Single Comment Widget -->
+                            <div class="single-comments d-flex">
+                                {% for comment in twoComments %}
+                                <div class="comments-thumbnail">
+                                    <img src="img/bg-img/t1.jpg" alt="">
+                                </div>
+                                <div class="comments-text">
+                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
+                                </div>
+                                 {% endfor %}
+                            </div>
+
+                            <!-- Single Comment Widget -->
+                            <div class="single-comments d-flex">
+                                {% for comment in threeComments %}
+                                <div class="comments-thumbnail">
+                                    <img src="img/bg-img/t1.jpg" alt="">
+                                </div>
+                                <div class="comments-text">
+                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
+                                </div>
+                                 {% endfor %}
+                            </div>
+                            
 
                            
 
@@ -230,7 +250,7 @@
 </p> #}
  <div>
             <div id="comments">
-            {% if article.comments.empty %}
+            {# {% if article.comments.empty %}
                 <p>К данной статье нет комментариев.</p>
             {% else %}
                 {% for comment in article.comments.toArray %}
@@ -239,16 +259,18 @@
                             <p>{{ comment.text }}</p>
                         </div>
                 {% endfor %}
-            {% endif %}
-    </div>
+            {% endif %} #}
+            <p>.</p>
+                            
+            </div>
             {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} #}
-                <form name="add-comment">
+                {# <form name="add-comment">
                     <textarea name="text" placeholder="Оставить комментарий"></textarea>
                     <input type="hidden" name="article_id" value="{{ article.id }}">
                     <div>
                         <input type="submit" value="Добавить комментарий">
                     </div>
-                </form>
+                </form> #}
             {# {% else %}
                 <p>Авторизуйтесь, чтобы оставлять комментарии.</p>
             {% endif %} #}

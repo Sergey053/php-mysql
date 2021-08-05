@@ -43,6 +43,22 @@ class CommentRepository extends ServiceEntityRepository
         dump($oneCommentArr);
         return $oneCommentArr;
      }
+     public function findLastByTwoComment(){
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = "SELECT * FROM tb_comments ORDER BY id DESC LIMIT 1,1;";
+        $statement = $connection->executeQuery($sql);
+        $twoCommentArr = $statement->fetchAllAssociative();
+        dump($twoCommentArr);
+        return $twoCommentArr;
+     }
+     public function findLastByThreeComment(){
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = "SELECT * FROM tb_comments ORDER BY id DESC LIMIT 2,1;";
+        $statement = $connection->executeQuery($sql);
+        $threeCommentArr = $statement->fetchAllAssociative();
+        dump($threeCommentArr);
+        return $threeCommentArr;
+     }
     /*
     public function findOneBySomeField($value): ?Comment
     {

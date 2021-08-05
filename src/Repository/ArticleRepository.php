@@ -49,10 +49,39 @@ class ArticleRepository extends ServiceEntityRepository
         $connection = $this->getEntityManager()->getConnection();
         $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 3";
         $statement = $connection->executeQuery($sql);
-        $threeArticletArr = $statement->fetchAllAssociative();
-        dump($threeArticletArr);
-        return $threeArticletArr;
+        $threeArticleArr = $statement->fetchAllAssociative();
+        dump($threeArticleArr);
+        return $threeArticleArr;
     }
+//    последняя статья
+    public function findLastByOneArticle(){
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 1;";
+        $statement = $connection->executeQuery($sql);
+        $oneArticleArr = $statement->fetchAllAssociative();
+        dump($oneArticleArr);
+        return $oneArticleArr;
+    }
+
+ //    предпоследняя статья
+ public function findLastByTwoArticle(){
+    $connection = $this->getEntityManager()->getConnection();
+    $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 1,1;";
+    $statement = $connection->executeQuery($sql);
+    $twoArticleArr = $statement->fetchAllAssociative();
+    dump($twoArticleArr);
+    return $twoArticleArr;
+ }
+  //   2 предпоследняя статья
+  public function findLastByFreeArticle(){
+    $connection = $this->getEntityManager()->getConnection();
+    $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 1,2;";
+    $statement = $connection->executeQuery($sql);
+    $freeArticleArr = $statement->fetchAllAssociative();
+    dump($freeArticleArr);
+    return $freeArticleArr;
+ }
+
 
 
 

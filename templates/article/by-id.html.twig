@@ -45,7 +45,7 @@
 
                         <!-- Comment Area Start -->
                         <div class="comment_area clearfix" id="comments">
-                            <h4 class="title mb-70">1 comment</h4>
+                            <h4 class="title mb-70">Комментарии</h4>
 
                             <ol>
                                 <!-- Single Comment Area -->
@@ -67,6 +67,7 @@
                                         <li class="single_comment_area">
                                             <!-- Comment Content -->
                                             <div class="comment-content d-flex">
+                                               
                                                 <!-- Comment Author -->
                                                 <div class="comment-author">
                                                     <img src="img/bg-img/t2.jpg" alt="author">
@@ -85,17 +86,26 @@
                                 <!-- Single Comment Area -->
                                 <li class="single_comment_area">
                                     <!-- Comment Content -->
+                                     {% if article.comments.empty %}
+                                      <div class="comments-text">
+                                          <p> нет комментариев.</p>
+                                      </div>
+                                     {% else %}
+                                      {% for comment in article.comments %}
                                     <div class="comment-content d-flex">
+                                    
                                         <!-- Comment Author -->
                                         <div class="comment-author">
                                             <img src="img/bg-img/t3.jpg" alt="author">
                                         </div>
                                         <!-- Comment Meta -->
                                         <div class="comment-meta">
-                                            <a href="#" class="post-author">Christian Williams</a>
-                                            <a href="#" class="post-date">April 15, 2018</a>
-                                            <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
+                                            <a href="#" class="post-author">{{ comment.user.login }}</a>
+                                            <a href="#" class="post-date">{{ comment.added|date("m.d.Y H:i:s") }}</a>
+                                            <p>{{ comment.text }}.</p>
                                         </div>
+                                        {% endfor %}
+                                {% endif %}
                                     </div>
                                 </li>
                             </ol>
@@ -173,10 +183,10 @@
                             <h4>Последние комментарии</h4>
                                 {% if article.comments.empty %}
                                      <div class="comments-text">
-                                     <p>К данной статье нет комментариев.</p>
+                                     <p> нет комментариев.</p>
                                       </div>
                                  {% else %}
-                                {% for comment in article.comments.toArray %}
+                                {% for comment in article.comments %}
                                 <!-- Single Comment Widget -->
                                     <div class="single-comments d-flex">
                                 <div class="comments-thumbnail">

@@ -22,7 +22,7 @@
                     <div class="hero-slides owl-carousel">
                         <!-- Single Blog Post -->
                         <div class="single-blog-post d-flex align-items-center mb-50">
-                         {% for article in threeArticles %}
+                         {% for article in oneArticles %}
                             <div class="post-thumb">
                                 <a href="#"><img src="/investments_directory/{{ article.investment }}" ></a>
                             </div>
@@ -36,6 +36,39 @@
                             </div>
                             {% endfor %}
                         </div>
+                        <!-- Single Blog Post -->
+                        <div class="single-blog-post d-flex align-items-center mb-50">
+                            {% for article in twoArticles %}
+                            <div class="post-thumb">
+                                <a href="#"><img src="/investments_directory/{{ article.investment }}" ></a>
+                            </div>
+                            <div class="post-data">
+                                <a href="/articles/{{ article.id }}" class="post-title">
+                                    <h6>{{ article.title }}</h6>
+                                </a>
+                                <div class="post-meta">
+                                    <p class="post-date"><a href="#">{{article.published|date("d.m.Y H:i:s")}}</a></p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Single Blog Post -->
+                        {# <div class="single-blog-post d-flex align-items-center mb-50">
+                            {% for article in freeArticles %}
+                            <div class="post-thumb">
+                                <a href="#"><img src="/investments_directory/{{ article.investment }}" ></a>
+                            </div>
+                            <div class="post-data">
+                                <a href="/articles/{{ article.id }}" class="post-title">
+                                    <h6>{{ article.title }}</h6>
+                                </a>
+                                <div class="post-meta">
+                                    <p class="post-date"><a href="#">{{article.published|date("d.m.Y H:i:s")}}</a></p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div> #}
 
                        
                     </div>
@@ -96,13 +129,15 @@
 
                             <!-- Single Comment Widget -->
                             <div class="single-comments d-flex">
+                             {% for comment in oneComments %}
                                 <div class="comments-thumbnail">
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span>пользователь 1</span> мои комментарии к этой статье</a>
-                                    <p>06:34 am, April 14, 2018</p>
+                                    <a href="#"><span>{{ comment.user.login }}</span>{{ comment.text }}</a>
+                                    <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
+                                 {% endfor %}
                             </div>
 
                             <!-- Single Comment Widget -->

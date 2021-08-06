@@ -10,9 +10,9 @@
                     <div class="blog-posts-area">
 
                         <!-- Single Featured Post -->
-                        <div class="single-blog-post-details">
-                            <div class="post-thumb">
-                                <img src="/investments_directory/{{ article.investment }}" >>
+                        <div class="single-blog-post-details ">
+                            <div class="post-thumb ">
+                                <img  src="/investments_directory/{{ article.investment }} " >
                             </div>
                             <div class="post-data">
                                 <a href="#" class="post-catagory">{{article.type}}</a>
@@ -104,9 +104,10 @@
                                             <a href="#" class="post-date">{{ comment.added|date("m.d.Y H:i:s") }}</a>
                                             <p>{{ comment.text }}.</p>
                                         </div>
-                                        {% endfor %}
-                                        {% endif %}
+                                        
                                     </div>
+                                    {% endfor %}
+                                        {% endif %}
                                 </li>
                             </ol>
                         </div>
@@ -187,7 +188,7 @@
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <a href="/articles/{{ comment.article_id }}"><span></span>{{ comment.text }}</a>
                                     <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
                                  {% endfor %}
@@ -200,7 +201,7 @@
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <a href="/articles/{{ comment.article_id }}"><span></span>{{ comment.text }}</a>
                                     <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
                                  {% endfor %}
@@ -213,7 +214,7 @@
                                     <img src="img/bg-img/t1.jpg" alt="">
                                 </div>
                                 <div class="comments-text">
-                                    <a href="#"><span></span>{{ comment.text }}</a>
+                                    <a href="/articles/{{ comment.article_id }}"><span></span>{{ comment.text }}</a>
                                     <p>{{ comment.added|date("m.d.Y H:i:s") }}</p>
                                 </div>
                                  {% endfor %}

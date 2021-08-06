@@ -71,6 +71,14 @@ img {
   height: auto;
   max-width: 100%; }
 
+.imgImg {
+  display: inline-block;
+    height: auto;
+    max-width: 300px;
+   
+   }
+
+
 /* Spacing */
 .mt-15 {
   margin-top: 15px !important; }

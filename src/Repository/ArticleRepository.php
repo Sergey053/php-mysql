@@ -38,7 +38,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findLastByArticle(){
         $connection = $this->getEntityManager()->getConnection();
-        $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 5";
+        $sql = "SELECT * FROM tb_articles ORDER BY id DESC LIMIT 6";
         $statement = $connection->executeQuery($sql);
         $resultArr = $statement->fetchAllAssociative();
         dump($resultArr);

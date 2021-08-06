@@ -95,6 +95,16 @@ class User implements UserInterface
         return $this;
     }
 
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
     public function removeArticle(Article $article): self
     {
         if ($this->articles->removeElement($article)) {
@@ -106,6 +116,19 @@ class User implements UserInterface
 
         return $this;
     }
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
